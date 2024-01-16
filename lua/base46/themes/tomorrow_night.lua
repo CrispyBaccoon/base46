@@ -62,6 +62,4 @@ M.polish_hl = {
   -- ["@punctuation.bracket"] = { fg = M.base_30.yellow },
 }
 
-M = require("base46").override_theme(M, "tomorrow_night")
-
 return M
