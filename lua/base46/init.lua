@@ -1,3 +1,5 @@
+local Util = require 'core.utils'
+
 local M = {}
 
 ---@param props { name: string }
@@ -204,7 +206,7 @@ function M.load()
   end
   local ok, theme = M.get_theme { name = colorscheme }
   if not ok then
-    require('core.utils').log(
+    Util.log(
       'core.hl',
       ('could\'t load theme "%s"'):format(colorscheme),
       'error'
@@ -215,7 +217,13 @@ function M.load()
   core.lib.hl = core.lib.hl or {}
   core.lib.hl.__value = theme
 
-  require('core.ui.theme').apply { full = true }
+  require('core.ui.theme').apply()
+
+  local hl_groups = require 'base46.hl'
+  for name, hls in pairs(hl_groups) do
+    Util.log('core.ui', ('applying "%s" hl groups'):format(name))
+    core.lib.hl.apply(hls)
+  end
 end
 
 return M
