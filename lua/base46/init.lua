@@ -219,7 +219,8 @@ function M.load()
 
   require('core.ui.theme').apply()
 
-  local hl_groups = require 'base46.hl'.setup()
+  local config = core.lib.options:get('ui', 'general', 'theme_config')
+  local hl_groups = require 'base46.hl'.setup(theme, config)
   for name, hls in pairs(hl_groups) do
     Util.log('core.ui', ('applying "%s" hl groups'):format(name))
     core.lib.hl.apply(hls)

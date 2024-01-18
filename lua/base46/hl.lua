@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.setup(theme, config)
   local hl_groups = {}
   hl_groups.ui = {
     Normal = { theme.ui.fg, theme.ui.bg },
